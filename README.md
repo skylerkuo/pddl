@@ -1,3 +1,5 @@
+pip install pyperplan
+
 domain file : actions, rule of actions
 problem file : initial state, goal state
 
