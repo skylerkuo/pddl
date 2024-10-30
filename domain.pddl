@@ -6,7 +6,7 @@
   )
 
   (:predicates
-    (holding ?arm - robot ?wire - wire)
+    (holding ?wire - wire)
     (arm-empty ?arm - robot)
     (available ?wire - wire)
     (on ?wire - wire ?loc - location)
@@ -33,7 +33,7 @@
     :effect
       (and
         (not (available ?wire))
-        (holding ?arm ?wire)
+        (holding ?wire)
         (not (arm-empty ?arm))
       )
   )
@@ -45,14 +45,14 @@
        ?loc - location)
     :precondition
       (and
-        (holding ?arm ?wire)
+        (holding ?wire)
         (is-arm1 ?arm)
       )
     :effect
       (and
         (on ?wire ?loc)
         (arm-empty ?arm)
-        (not (holding ?arm ?wire))
+        (not (holding ?wire))
       )
   )
 
@@ -77,14 +77,15 @@
        ?loc - location)
     :precondition
     (and
-      (holding ?arm ?wire)
+      ;(holding ?arm ?wire)
+      (holding ?wire)
       (is-arm1 ?arm)
     )
     :effect
       (and
         (inserted ?wire ?loc)
         (arm-empty ?arm)
-        (not (holding ?arm ?wire))
+        (not (holding ?wire))
       )
   )
 
