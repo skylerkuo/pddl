@@ -3,10 +3,15 @@
   (:objects
     arm1 arm2 - robot
     red_wire blue_wire green_wire black_wire yellow_wire - wire
-    power_supply table - location
+    power_supply_1 power_supply_2 power_supply_3 power_supply_4 power_supply_5 power_supply_6 power_supply_7 power_supply_8 power_supply_9 table power_supply - location
   )
-  (:init ;you can change the initial state here
+  (:init
     (arm-empty arm1)
+    (on red_wire table)
+    (on blue_wire table)
+    (on green_wire table)
+    (on black_wire table)
+    (on yellow_wire table)
     (available red_wire)
     (available blue_wire)
     (available green_wire)
@@ -15,13 +20,10 @@
     (is-arm2 arm2)
     (is-arm1 arm1)
   )
-  (:goal ;you can change the goal here
+  (:goal
     (and
-    (locked yellow_wire power_supply)
-    (locked blue_wire power_supply)
+      (locked red_wire power_supply_8)
+      (locked blue_wire power_supply_6)
     )
   )
 )
-
-
-    ;(arm-empty arm)
