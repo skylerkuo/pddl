@@ -24,15 +24,18 @@
   (:action pickup
     :parameters
       (?arm - robot
-       ?wire - wire)
+       ?wire - wire
+       ?loc - location)
     :precondition
       (and
         (available ?wire)
+        (on ?wire ?loc)
         (arm-empty ?arm)
       )
     :effect
       (and
         (not (available ?wire))
+        (not (on ?loc ?wire))
         (holding ?wire)
         (not (arm-empty ?arm))
       )
@@ -51,6 +54,7 @@
     :effect
       (and
         (on ?wire ?loc)
+        (available ?wire)
         (arm-empty ?arm)
         (not (holding ?wire))
       )
@@ -67,7 +71,10 @@
         (is-arm2 ?arm)
       )
     :effect
-      (locked ?wire ?loc)
+      (and
+        (locked ?wire ?loc)
+        (not (available ?wire))
+      )
   )
 
   (:action insert
@@ -77,7 +84,6 @@
        ?loc - location)
     :precondition
     (and
-      ;(holding ?arm ?wire)
       (holding ?wire)
       (is-arm1 ?arm)
     )
