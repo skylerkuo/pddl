@@ -26,7 +26,7 @@
   )
   (:goal
     (and
-    #
+    (locked red_wire power_supply_4)
     )
   )
 )
