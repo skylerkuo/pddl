@@ -1,4 +1,6 @@
 pip install pyperplan
+
+if you want to gemma2+pddl, you need prompt_templete and domain.pddl and problem.pddl and problem2.pddl
 please check the path of the pddl and prompt file
 
 domain file : actions, rule of actions
