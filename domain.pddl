@@ -1,5 +1,5 @@
 (define (domain robot-arm)
-  (:requirements :typing)
+  (:requirements :typing :equality :strips)
 
   (:types
     wire robot location
@@ -19,6 +19,7 @@
     (move-home ?arm - robot)
     (is-arm2 ?arm - robot)
     (is-arm1 ?arm - robot)
+    (lockstate)   
   )
 
   (:action pickup
@@ -34,6 +35,7 @@
       )
     :effect
       (and
+        (not (lockstate))
         (not (available ?wire))
         (not (on ?loc ?wire))
         (holding ?wire)
@@ -53,6 +55,7 @@
       )
     :effect
       (and
+        (not (lockstate))
         (on ?wire ?loc)
         (available ?wire)
         (arm-empty ?arm)
@@ -67,11 +70,13 @@
        ?loc - location)
     :precondition
       (and
+        (lockstate)
         (inserted ?wire ?loc)
         (is-arm2 ?arm)
       )
     :effect
       (and
+        (not (lockstate))
         (locked ?wire ?loc)
         (not (available ?wire))
       )
@@ -89,6 +94,7 @@
     )
     :effect
       (and
+        (lockstate)
         (inserted ?wire ?loc)
         (arm-empty ?arm)
         (not (holding ?wire))
