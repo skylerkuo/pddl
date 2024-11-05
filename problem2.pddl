@@ -24,7 +24,8 @@
   )
   (:goal
     (and
-    (locked red_wire power_supply_8)
+    (locked black_wire power_supply_8)
+    (locked green_wire power_supply_6)
     )
   )
 )
