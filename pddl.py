@@ -19,8 +19,9 @@ try:
                 solution = f.read()
                 print("task plan:")
                 print(solution)
-        else:
-            print("do not find the file")
+            
+            with open(solution_file, 'w') as f:
+                f.write('')
 
 except FileNotFoundError:
     print("pyperplan not install correctly。")
