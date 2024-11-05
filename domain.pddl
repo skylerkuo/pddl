@@ -2,14 +2,14 @@
   (:requirements :typing :equality :strips)
 
   (:types
-    wire robot location
+    wire robot location workspace
   )
 
   (:predicates
     (holding ?wire - wire)
     (arm-empty ?arm - robot)
     (available ?wire - wire)
-    (on ?wire - wire ?loc - location)
+    (on ?wire - wire ?space - workspace)
     (locked ?wire - wire ?loc - location)
     (inserted ?wire - wire ?loc - location)
     (move-right ?arm - robot)
@@ -18,26 +18,24 @@
     (move-backward ?arm - robot)
     (move-home ?arm - robot)
     (is-arm2 ?arm - robot)
-    (is-arm1 ?arm - robot)
-    (lockstate)   
+    (is-arm1 ?arm - robot)   
   )
 
   (:action pickup
     :parameters
       (?arm - robot
        ?wire - wire
-       ?loc - location)
+       ?space - workspace)
     :precondition
       (and
         (available ?wire)
-        (on ?wire ?loc)
+        (on ?wire ?space)
         (arm-empty ?arm)
       )
     :effect
       (and
-        (not (lockstate))
         (not (available ?wire))
-        (not (on ?loc ?wire))
+        (not (on ?space ?wire))
         (holding ?wire)
         (not (arm-empty ?arm))
       )
@@ -47,7 +45,7 @@
     :parameters
       (?arm - robot
        ?wire - wire
-       ?loc - location)
+       ?space - workspace)
     :precondition
       (and
         (holding ?wire)
@@ -55,8 +53,7 @@
       )
     :effect
       (and
-        (not (lockstate))
-        (on ?wire ?loc)
+        (on ?wire ?space)
         (available ?wire)
         (arm-empty ?arm)
         (not (holding ?wire))
@@ -70,15 +67,15 @@
        ?loc - location)
     :precondition
       (and
-        (lockstate)
         (inserted ?wire ?loc)
         (is-arm2 ?arm)
       )
     :effect
       (and
-        (not (lockstate))
         (locked ?wire ?loc)
         (not (available ?wire))
+        (arm-empty ?arm)
+        (not(inserted ?wire ?loc))
       )
   )
 
@@ -94,9 +91,7 @@
     )
     :effect
       (and
-        (lockstate)
         (inserted ?wire ?loc)
-        (arm-empty ?arm)
         (not (holding ?wire))
       )
   )
