@@ -1,4 +1,5 @@
 pip install pyperplan
+please check the path of the pddl and prompt file
 
 domain file : actions, rule of actions
 problem file : initial state, goal state
