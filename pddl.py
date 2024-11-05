@@ -23,4 +23,4 @@ try:
             print("do not find the file")
 
 except FileNotFoundError:
-    print("pyperplan 未安裝或路徑未正確設定。")
+    print("pyperplan not install correctly。")
