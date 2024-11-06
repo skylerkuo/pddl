@@ -2,13 +2,12 @@
   (:requirements :typing :equality :strips)
 
   (:types
-    wire robot location workspace
+    wire robot location workspace ; location is the place that wire can be locked, work space means that the place robotic arm can pickup the wire.
   )
 
   (:predicates
     (holding ?wire - wire)
     (arm-empty ?arm - robot)
-    (available ?wire - wire)
     (on ?wire - wire ?space - workspace)
     (locked ?wire - wire ?loc - location)
     (inserted ?wire - wire ?loc - location)
@@ -28,13 +27,11 @@
        ?space - workspace)
     :precondition
       (and
-        (available ?wire)
         (on ?wire ?space)
         (arm-empty ?arm)
       )
     :effect
       (and
-        (not (available ?wire))
         (not (on ?space ?wire))
         (holding ?wire)
         (not (arm-empty ?arm))
@@ -54,7 +51,6 @@
     :effect
       (and
         (on ?wire ?space)
-        (available ?wire)
         (arm-empty ?arm)
         (not (holding ?wire))
       )
@@ -73,7 +69,6 @@
     :effect
       (and
         (locked ?wire ?loc)
-        (not (available ?wire))
         (arm-empty ?arm)
         (not(inserted ?wire ?loc))
       )
