@@ -10,11 +10,11 @@ try:
     result = subprocess.run(cmd, capture_output=True, text=True)
 
     if result.returncode == 0:
-        print("success!")
+        #print("success!")
         solution_file = problem_file + '.soln'
         
         if os.path.exists(solution_file):
-            print(f"solution file location: {solution_file}")
+            #print(f"solution file location: {solution_file}")
             with open(solution_file, 'r') as f:
                 solution = f.read()
                 print("task plan:")
