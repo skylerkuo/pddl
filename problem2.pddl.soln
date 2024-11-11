@@ -1,0 +1,2 @@
+(putdown arm1 red_wire table)
+(pickup arm1 black_wire table)
