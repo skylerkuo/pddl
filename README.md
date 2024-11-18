@@ -7,9 +7,11 @@ input of pddl format:
 2. (locked A B) ex: (locked red_wire power_supply_5)
 3. (inserted A B) ex: (inserted red_wire power_supply_5)
 4. (on A B) ex: (on red_wire table)
+5. (find A) ex: (find red_wire)
 
 output of pddl format:
 1. (pickup ?arm A B) ex: (pickup arm1 red_wire table)
 2. (lock ?arm A B) ex: (lock arm2 red_wirepower_supply_5)
 3. (inserted ?arm A B) ex: (insert arm1 red_wire power_supply_5)
 4. (putdown ?arm A B) ex: (putdown arm1 red_wire power_supply_5)
+5. (find A) ex: (find red_wire)
