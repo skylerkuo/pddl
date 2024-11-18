@@ -17,7 +17,8 @@
     (move-left ?arm - robot)
     (move-forward ?arm - robot)
     (move-backward ?arm - robot)
-    (move-home ?arm - robot)   
+    (move-home ?arm - robot)
+    (find ?wire - wire)  
   )
 
   (:action pickup
@@ -29,6 +30,7 @@
       (and
         (on ?wire ?space)
         (arm-empty ?arm)
+        (find ?wire)
       )
     :effect
       (and
@@ -47,6 +49,7 @@
       (and
         (holding ?wire)
         (is-arm1 ?arm)
+        (find ?wire)
       )
     :effect
       (and
@@ -65,6 +68,7 @@
       (and
         (inserted ?wire ?loc)
         (is-arm2 ?arm)
+        (find ?wire)
       )
     :effect
       (and
@@ -80,14 +84,26 @@
        ?wire - wire
        ?loc - location)
     :precondition
-    (and
-      (holding ?wire)
-      (is-arm1 ?arm)
-    )
+      (and
+        (find ?wire)
+        (holding ?wire)
+        (is-arm1 ?arm)
+      )
     :effect
       (and
         (inserted ?wire ?loc)
         (not (holding ?wire))
+      )
+  )
+
+  (:action find
+    :parameters
+      (?wire - wire)
+    :precondition
+      (and)
+    :effect
+      (and
+        (find ?wire)
       )
   )
 
